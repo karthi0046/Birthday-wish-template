@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        /* --- General Settings --- */
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fdf6e4; /* Light cream background from video */
+            font-family: 'Poppins', sans-serif;
+            color: #5a5a5a;
+            overflow-x: hidden;
+        }
+
+        /* --- Floating Hearts Animation --- */
+        .heart {
+            position: fixed;
+            top: -10vh;
+            font-size: 20px;
+            animation: fall linear forwards;
+            z-index: 0; /* Behind text */
+            opacity: 0.7;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+
+        /* --- Hero Section (The Landing) --- */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #d65d5d; /* Pinkish-red text */
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: #888;
+            margin-bottom: 2rem;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            background-color: #ff8fa3;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 143, 163, 0.4);
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- Hidden Content (Revealed after click) --- */
+        #content {
+            display: none; /* Hidden initially */
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- Photo Grid --- */
+        .section-title {
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #d65d5d;
+            margin: 40px 0 20px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .photo-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Overlay text on hover (like in the video) */
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .photo-card:hover .overlay {
+            opacity: 1;
+        }
+
+        /* --- Message Card --- */
+        .message-card {
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            margin-bottom: 50px;
+        }
+
+        .message-card h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            margin-top: 0;
+        }
+
+        .message-card p {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="hearts-container"></div>
+
+    <audio id="bg-music" loop>
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
+    <header id="header">
+        <h1>Happy Birthday, Baby!</h1>
+        <p class="subtitle">Today is all about celebrating you and the joy you bring to my life</p>
+        <button onclick="startCelebration()">Start the Celebration 🎉</button>
+    </header>
+
+    <div id="content">
+        
+        <h2 class="section-title">Our Beautiful Memories</h2>
+        
+        <div class="gallery">
+            <div class="photo-card">
+                <img src="https://picsum.photos/400/400?random=1" alt="Memory 1">
+                <div class="overlay">You're my favorite place to be</div>
+            </div>
+            <div class="photo-card">
+                <img src="https://picsum.photos/400/400?random=2" alt="Memory 2">
+                <div class="overlay">With you, everything feels right</div>
+            </div>
+            <div class="photo-card">
+                <img src="https://picsum.photos/400/400?random=3" alt="Memory 3">
+                <div class="overlay">Your smile is my home</div>
+            </div>
+            <div class="photo-card">
+                <img src="https://picsum.photos/400/400?random=4" alt="Memory 4">
+                <div class="overlay">Every moment matters</div>
+            </div>
+            <div class="photo-card">
+                <img src="https://picsum.photos/400/400?random=5" alt="Memory 5">
+                <div class="overlay">Love you endlessly</div>
+            </div>
+            <div class="photo-card">
+                <img src="https://picsum.photos/400/400?random=6" alt="Memory 6">
+                <div class="overlay">My happy pill</div>
+            </div>
+        </div>
+
+        <div class="message-card">
+            <h2>A Special Message for You</h2>
+            <p>
+                Happy Birthday to the most beautiful soul in my life. You make my world brighter just by being in it. 
+                Every smile of yours feels like a gift meant just for me. Thank you for loving me, supporting me, and understanding me.
+                <br><br>
+                With you, every moment becomes special and meaningful. I wish you endless happiness, success, and peace today and always.
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        // Function to start the music and reveal content
+        function startCelebration() {
+            const audio = document.getElementById('bg-music');
+            const content = document.getElementById('content');
+            const button = document.querySelector('button');
+            
+            // Play music (browsers require interaction to play audio)
+            audio.play().catch(error => {
+                console.log("Audio playback failed. User might need to interact more.");
+            });
+
+            // Reveal content
+            content.style.display = 'block';
+            
+            // Smooth scroll to the memories
+            content.scrollIntoView({ behavior: 'smooth' });
+
+            // Hide the button after clicking (optional)
+            button.style.display = 'none';
+        }
+
+        // Script to generate floating hearts/butterflies
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = Math.random() > 0.5 ? '❤️' : '🦋'; // Randomly choose heart or butterfly
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's'; // Random speed
+            
+            document.getElementById('hearts-container').appendChild(heart);
+
+            // Remove element after animation ends to keep DOM clean
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Generate a new heart every 300 milliseconds
+        setInterval(createHeart, 300);
+    </script>
+
+</body>
+</html>
